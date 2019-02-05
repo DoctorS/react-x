@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
+import { setUser } from '../actions'
 
 class Signin extends Component {
   constructor(props) {
@@ -29,10 +29,7 @@ class Signin extends Component {
         this.setState({ errors: ['Login failed.'] })
         return
       }
-      this.props.dispatch({
-        type: 'SET_USER',
-        payload: { email: this.state.user.email }
-      })
+      this.props.setUser(this.state.user.email)
     })
   }
 
@@ -62,10 +59,11 @@ class Signin extends Component {
   }
 }
 
-Signin.propTypes = {
-  classes: PropTypes.object.isRequired
-}
-
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps)(Signin)
+const mapDispatchToProps = { setUser }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Signin)

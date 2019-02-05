@@ -1,8 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Router from './Router'
 import Navigation from './Navigation'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 class App extends React.Component {
@@ -13,33 +12,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <main>
+      <React.Fragment>
         <header>
           <Navigation />
-          {/*<Link to="/">*/}
-          {/*React App*/}
-          {/*</Link>*/}
-
-          {/*{!this.props.user.email && (*/}
-          {/*<Link to="/signin">*/}
-          {/*Login*/}
-          {/*</Link>*/}
-          {/*)}*/}
-          {/*{this.props.user.email && (*/}
-          {/*<Link to="/profile">*/}
-          {/*{this.props.user.email}*/}
-          {/*</Link>*/}
-          {/*)}*/}
         </header>
-        <Router />
-      </main>
+        <main>
+          <Router />
+        </main>
+      </React.Fragment>
     )
   }
-}
-
-App.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => state

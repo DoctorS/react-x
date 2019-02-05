@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import validator from 'validator'
-import PropTypes from 'prop-types'
+import { setUser } from '../actions'
 
 class Signup extends Component {
   constructor(props) {
@@ -28,10 +28,7 @@ class Signup extends Component {
         this.setState({ errors })
         return
       }
-      this.props.dispatch({
-        type: 'SET_USER',
-        payload: { email: this.state.user.email }
-      })
+      this.props.setUser(this.state.user.email)
     })
   }
 
@@ -74,10 +71,11 @@ class Signup extends Component {
   }
 }
 
-Signup.propTypes = {
-  classes: PropTypes.object.isRequired
-}
-
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps)(Signup)
+const mapDispatchToProps = { setUser }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Signup)

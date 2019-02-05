@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { setUser } from '../actions'
 
 class Navigation extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class Navigation extends Component {
 
   logout(e) {
     e.preventDefault()
-    this.props.dispatch({ type: 'SET_USER', payload: { email: '' } })
+    this.props.setUser('')
   }
 
   render() {
@@ -50,4 +51,9 @@ class Navigation extends Component {
 
 const mapStateToProps = state => state
 
-export default connect(mapStateToProps)(Navigation)
+const mapDispatchToProps = { setUser }
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Navigation)
